@@ -17,6 +17,8 @@ body {
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 2; /* Pour que le contenu soit au-dessus de la pluie de cœurs */
 }
 
 h1 {
@@ -43,10 +45,11 @@ button {
 #ouiBtn {
     background-color: #4caf50; /* Vert doux */
     color: white;
+    transform: scale(1); /* Taille initiale */
+    transition: transform 0.3s ease; /* Animation fluide */
 }
 
 #ouiBtn:hover {
-    transform: scale(1.05);
     background-color: #45a049;
 }
 
@@ -57,20 +60,18 @@ button {
 }
 
 #nonBtn:hover {
-    transform: scale(1.05);
     background-color: #e53935;
 }
 
-/* Effet magique pour "Oui" */
-@keyframes heartBeat {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
-
+/* Animation de la pluie de cœurs */
 .heart {
     position: absolute;
     font-size: 2em;
     color: #ff4d4d;
-    animation: heartBeat 1s infinite;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-100px) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
 }
